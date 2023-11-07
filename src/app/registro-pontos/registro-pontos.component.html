@@ -1,0 +1,15 @@
+<div style="padding: 13px;">
+    <mat-spinner *ngIf="pontos.length === 0"></mat-spinner>
+    <h3>{{pontoPrincipal.profissional.pessoa.nome}}</h3>
+    <caption>{{pontoPrincipal.profissional.cargo.nome}}</caption>
+    <mat-card *ngFor="let ponto of pontos" style="margin-top: 10px;">
+        <mat-card-content>
+            <p>
+                {{ponto.tipoPonto}} - {{ponto.hora}}
+            </p>
+        </mat-card-content>
+    </mat-card>
+    <button mat-button (click)="buscarPontos()">Buscar Pontos</button>
+    <button mat-button (click)="baterPonto()">Bater Ponto</button>
+    <p>{{mensagem}}</p>
+</div>
