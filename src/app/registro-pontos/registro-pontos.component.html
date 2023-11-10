@@ -1,15 +1,49 @@
-<div style="padding: 13px;">
-    <mat-spinner *ngIf="pontos.length === 0"></mat-spinner>
-    <h3>{{pontoPrincipal.profissional.pessoa.nome}}</h3>
-    <caption>{{pontoPrincipal.profissional.cargo.nome}}</caption>
-    <mat-card *ngFor="let ponto of pontos" style="margin-top: 10px;">
-        <mat-card-content>
-            <p>
-                {{ponto.tipoPonto}} - {{ponto.hora}}
-            </p>
-        </mat-card-content>
-    </mat-card>
-    <button mat-button (click)="buscarPontos()">Buscar Pontos</button>
-    <button mat-button (click)="baterPonto()">Bater Ponto</button>
-    <p>{{mensagem}}</p>
+<div class="background-container">
+    <div class="content">
+        <p>{{mensagem}}</p>
+        
+        <div *ngIf="espelhoPonto != null">
+            <h1>{{espelhoPonto.profissional.nome}}</h1>
+            <caption>{{espelhoPonto.profissional.cargo.nome}}</caption>
+        </div>
+
+        <mat-table *ngIf="espelhoPonto != null" [dataSource]="espelhoPonto.dias">
+            <ng-container matColumnDef="data">
+                <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
+                <mat-cell *matCellDef="let dia"> {{dia.data}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="entrada1">
+                <mat-header-cell *matHeaderCellDef> Entrada 1 </mat-header-cell>
+                <mat-cell *matCellDef="let dia"> {{dia.pontos[0]?.hora}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="saida1">
+                <mat-header-cell *matHeaderCellDef> Saída 1 </mat-header-cell>
+                <mat-cell *matCellDef="let dia"> {{dia.pontos[1]?.hora}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="entrada2">
+                <mat-header-cell *matHeaderCellDef> Entrada 2 </mat-header-cell>
+                <mat-cell *matCellDef="let dia"> {{dia.pontos[2]?.hora}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="saida2">
+                <mat-header-cell *matHeaderCellDef> Saída 2 </mat-header-cell>
+                <mat-cell *matCellDef="let dia"> {{dia.pontos[3]?.hora}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalHoras">
+                <mat-header-cell *matHeaderCellDef> Total de Horas Trabalhadas </mat-header-cell>
+                <mat-cell *matCellDef="let dia"> {{dia.totalHorasRegistradas}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+            <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+        </mat-table>
+        <div id="botoes">
+            <button mat-raised-button color="primary" class="botao" (click)="buscaEspelhoPonto()">Buscar Pontos</button>
+            <button mat-raised-button color="accent" class="botao" (click)="baterPonto()">Bater Ponto</button>
+        </div>
+    </div>
 </div>
