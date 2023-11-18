@@ -1,10 +1,12 @@
 # Punch Guardian
 
-Punch Guardian é um gerenciador de registro de marcação de pontos trabalhistas. Criado com o objetivo de simplificar o processo e o controle dos registros de pontos de entrada e saída, surgiu com o propósito de sanar uma dificuldade pessoal e melhorar a gestão de tempo no trabalho. O projeto ainda está em fase de desenvolvimento.
+O Punch Guardian é um gerenciador de registros de marcação de pontos no ambiente de trabalho. Desenvolvido com a intenção de simplificar e aprimorar o controle dos registros de entrada e saída, este projeto nasceu da necessidade de superar desafios pessoais e otimizar a gestão do tempo no ambiente profissional.
+
+Este projeto visa oferecer uma solução eficaz para essa questão, proporcionando uma marcação de pontos mais fácil e eficiente, contribuindo para um equilíbrio mais saudável entre trabalho e demais atividades. Vale ressaltar que o Punch Guardian está em constante desenvolvimento, e sua contribuição e feedback são sempre bem-vindos!
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
 
-# Imagens
+## Imagens
 
 [API](https://hub.docker.com/r/victorwanderley/punch-guardian-backend)
 [Front](https://hub.docker.com/r/victorwanderley/punch-guardian-front)
