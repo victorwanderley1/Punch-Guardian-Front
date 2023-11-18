@@ -1,6 +1,6 @@
 {
   "name": "punch-guardian",
-  "version": "0.0.0",
+  "version": "0.0.2-snapshot",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

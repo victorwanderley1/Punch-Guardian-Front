@@ -1,27 +1,13 @@
-# Use uma imagem base do Node.js
-FROM node:18.18.2 as build
+FROM nginx:alpine
 
-# Defina o diretório de trabalho
-WORKDIR /app
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copie os arquivos de configuração
-COPY package*.json ./
-COPY angular.json .
-COPY tsconfig.json .
+WORKDIR /usr/share/nginx/html
 
-# Instale as dependências
-RUN npm install
+COPY dist/punch-guardian/ .
 
-# Instale o Angular CLI globalmente
-RUN npm install -g @angular/cli
+RUN echo "mainFileName=\"\$(ls /usr/share/nginx/html/main*.js)\" && \
+          envsubst '\$URL_API ' < \${mainFileName} > main.tmp && \
+          mv main.tmp  \${mainFileName} && nginx -g 'daemon off;'" > run.sh
 
-# Copie todos os arquivos do projeto para o contêiner
-COPY . .
-
-# Construa o projeto Angular
-RUN ng build
-
-# Exponha a porta 4200
-EXPOSE 4200
-
-CMD ["ng", "serve"]
+ENTRYPOINT ["sh", "run.sh"]

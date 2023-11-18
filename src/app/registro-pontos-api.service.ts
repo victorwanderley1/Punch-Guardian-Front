@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { RegistroPonto } from './registro-pontos/registro-ponto.interface';
 import { EspelhoPonto } from './registro-pontos/espelho-ponto/espelho-ponto.interface';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroPontosApiService {
 
-  private SERVER_URL = "http://serverhome.local:8080/ponto/";
-  //private SERVER_URL = "http://localhost:8080/ponto/";
+  //private SERVER_URL = "http://serverhome.local:8080/ponto/";
+  private SERVER_URL = "http://"+ environment.URL_API +":8080/ponto/";
 
   constructor(private httpClient: HttpClient) { }
 
