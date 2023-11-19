@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class RegistroPontosApiService {
 
   //private SERVER_URL = "http://serverhome.local:8080/ponto/";
-  private SERVER_URL = "http://"+ environment.URL_API +"/ponto/";
+  private SERVER_URL = environment.URL_API +"/ponto/";
 
   constructor(private httpClient: HttpClient) { }
 
