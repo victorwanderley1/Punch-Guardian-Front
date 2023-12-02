@@ -1,49 +1,89 @@
 <div class="background-container">
     <div class="content">
-        <p>{{mensagem}}</p>
+        <div id="registrador-ponto" class="conteudo-central">
+            <div class="relogio">
+                <div class="time" id="time">{{timeString}}</div>
+            </div>
         
-        <div *ngIf="espelhoPonto != null">
-            <h1>{{espelhoPonto.profissional.nome}}</h1>
-            <caption>{{espelhoPonto.profissional.cargo.nome}}</caption>
+            <div id="mensagem-retorno">
+                <p>{{mensagem}}</p>
+            </div>
+        
+            <div class="botoes">
+                <button mat-raised-button color="accent" class="botao" (click)="baterPonto()">Bater Ponto</button>
+            </div>
         </div>
-
-        <mat-table *ngIf="espelhoPonto != null" [dataSource]="espelhoPonto.dias">
-            <ng-container matColumnDef="data">
-                <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
-                <mat-cell *matCellDef="let dia"> {{dia.data}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="entrada1">
-                <mat-header-cell *matHeaderCellDef> Entrada 1 </mat-header-cell>
-                <mat-cell *matCellDef="let dia"> {{dia.pontos[0]?.hora}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="saida1">
-                <mat-header-cell *matHeaderCellDef> Saída 1 </mat-header-cell>
-                <mat-cell *matCellDef="let dia"> {{dia.pontos[1]?.hora}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="entrada2">
-                <mat-header-cell *matHeaderCellDef> Entrada 2 </mat-header-cell>
-                <mat-cell *matCellDef="let dia"> {{dia.pontos[2]?.hora}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="saida2">
-                <mat-header-cell *matHeaderCellDef> Saída 2 </mat-header-cell>
-                <mat-cell *matCellDef="let dia"> {{dia.pontos[3]?.hora}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="totalHoras">
-                <mat-header-cell *matHeaderCellDef> Total de Horas Trabalhadas </mat-header-cell>
-                <mat-cell *matCellDef="let dia"> {{dia.totalHorasRegistradas}} </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-            <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
-        </mat-table>
-        <div id="botoes">
-            <button mat-raised-button color="primary" class="botao" (click)="buscaEspelhoPonto()">Buscar Pontos</button>
-            <button mat-raised-button color="accent" class="botao" (click)="baterPonto()">Bater Ponto</button>
+        <div id="espelho-ponto" class="conteudo-central">
+        
+            <div id="consulta-registros" class="conteudo-central">
+                <mat-form-field id="escolha-data">
+                    <mat-label>Período dos registros</mat-label>
+                    <mat-date-range-input [rangePicker]="picker" [formGroup]="range">
+                        <input matStartDate formControlName="dtInicio" name="dtInicio" placeholder="Data Inicial">
+                        <input matEndDate formControlName="dtFim" name="dtFim" placeholder="Data Final">
+                    </mat-date-range-input>
+                    <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker>
+                        <mat-date-range-picker-actions>
+                            <button mat-button matDateRangePickerCancel>Cancelar</button>
+                            <button mat-raised-button color="primary" matDateRangePickerApply>Confirmar</button>
+                        </mat-date-range-picker-actions>
+                    </mat-date-range-picker>
+                    <mat-error *ngIf="range.controls.dtInicio.hasError('matStartDateInvalid')">Data Inicial Inválida</mat-error>
+                    <mat-error *ngIf="range.controls.dtFim.hasError('matEndDateInvalid')">Data Final Inválida</mat-error>
+                </mat-form-field>
+                <div class="botoes">
+                    <button mat-raised-button color="primary" class="botao" (click)="buscaEspelhoPonto()">Buscar Pontos</button>
+                </div>
+            </div>
+            <div *ngIf="espelhoPonto != null">
+                <h1>{{espelhoPonto.profissional.nome}}</h1>
+                <caption>{{espelhoPonto.profissional.cargo.nome}}</caption>
+            </div>
+            <section id="tabela-registros" class="espelho-ponto mat-elevation-z8" tabindex="0">
+                <mat-table *ngIf="espelhoPonto != null" [dataSource]="espelhoPonto.dias">
+                    <ng-container matColumnDef="data">
+                        <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
+                        <mat-cell *matCellDef="let dia"> {{dia.data}} </mat-cell>
+                        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="entrada1">
+                        <mat-header-cell *matHeaderCellDef> Entrada 1 </mat-header-cell>
+                        <mat-cell *matCellDef="let dia"> {{dia.pontos[0]?.hora}} </mat-cell>
+                        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="saida1">
+                        <mat-header-cell *matHeaderCellDef> Saída 1 </mat-header-cell>
+                        <mat-cell *matCellDef="let dia"> {{dia.pontos[1]?.hora}} </mat-cell>
+                        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="entrada2">
+                        <mat-header-cell *matHeaderCellDef> Entrada 2 </mat-header-cell>
+                        <mat-cell *matCellDef="let dia"> {{dia.pontos[2]?.hora}} </mat-cell>
+                        <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="saida2">
+                        <mat-header-cell *matHeaderCellDef> Saída 2 </mat-header-cell>
+                        <mat-cell *matCellDef="let dia"> {{dia.pontos[3]?.hora}} </mat-cell>
+                        <mat-footer-cell *matFooterCellDef> Total de Horas Trabalhadas </mat-footer-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="totalHoras">
+                        <mat-header-cell *matHeaderCellDef> Total de Horas Trabalhadas Diárias </mat-header-cell>
+                        <mat-cell *matCellDef="let dia"> {{dia.totalHorasRegistradas}} </mat-cell>
+                        <mat-footer-cell *matFooterCellDef> 2:00 </mat-footer-cell>
+                    </ng-container>
+        
+                    <mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+                    <mat-footer-row *matFooterRowDef="columnsToDisplay; sticky: true"></mat-footer-row>
+                </mat-table>
+            </section>
         </div>
     </div>
 </div>
