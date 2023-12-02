@@ -5,6 +5,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .background-container {
     position: relative;
     background-image: url('/assets/background.jpg');
+    background-attachment: fixed;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -14,7 +15,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     position: relative;
     margin-left: 1%;
     margin-right: 1%;
-    height: 100%;
+    margin-bottom: 1%;
+    height: 97%;
     padding: 0.5%;
     background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo semi-transparente */
     display: flex;
