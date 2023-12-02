@@ -14,13 +14,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button' ;
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    RegistroPontosComponent
+    RegistroPontosComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +37,17 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}, //Adicionado para utilizar o formato pt-BR nas datas
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
