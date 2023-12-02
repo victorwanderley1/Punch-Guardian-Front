@@ -1,8 +1,52 @@
-#botoes{
+.botoes{
   padding-right: 10px;
+  margin-bottom: 5px;
+  align-content: center;
+  vertical-align: middle;
 }
 .botao{
-  margin-top: 5px;
   margin-left: 3px;
   margin-right: 3px;
 }
+.espelho-ponto{
+  height: auto;
+  width: 800px;
+  overflow: auto;
+}
+.relogio {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.time {
+  color: #fff;
+  font-size: 4rem;
+}
+
+.conteudo-central{
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  margin-top: 10px;
+}
+
+#registrador-ponto{
+  display: contents;
+}
+
+#escolha-data{
+  vertical-align: middle;
+}
+
+#consulta-registros{
+  display: contents;
+}
+
+#espelho-ponto{
+  display: contents;
+
+}
+
