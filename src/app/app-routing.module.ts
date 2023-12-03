@@ -5,7 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { RegistroPontosComponent } from './registro-pontos/registro-pontos.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'registro-pontos', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
   { path: 'registro-pontos', component: RegistroPontosComponent},
