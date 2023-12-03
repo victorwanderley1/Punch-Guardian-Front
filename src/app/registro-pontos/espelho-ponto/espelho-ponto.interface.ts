@@ -3,6 +3,7 @@ import { Time } from "@angular/common";
 export interface EspelhoPonto {
     profissional: Profissional;
     dias: DiaRegistro[];
+    totalHorasTrabalhadas: string;
 }
 
 export interface Profissional {

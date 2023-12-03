@@ -19,6 +19,7 @@ import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormatarTotalHorasTrabalhadasPipe } from './registro-pontos/espelho-ponto/total-horas-trabalhadas.pipe'
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular
     HomeComponent,
     AboutComponent,
     RegistroPontosComponent,
+    FormatarTotalHorasTrabalhadasPipe
   ],
   imports: [
     BrowserModule,

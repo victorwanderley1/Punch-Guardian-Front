@@ -76,7 +76,7 @@
                     <ng-container matColumnDef="totalHoras">
                         <mat-header-cell *matHeaderCellDef> Total de Horas Trabalhadas Diárias </mat-header-cell>
                         <mat-cell *matCellDef="let dia"> {{dia.totalHorasRegistradas}} </mat-cell>
-                        <mat-footer-cell *matFooterCellDef> 2:00 </mat-footer-cell>
+                        <mat-footer-cell *matFooterCellDef> {{espelhoPonto.totalHorasTrabalhadas | formatarTotalHorasTrabalhadas}} </mat-footer-cell>
                     </ng-container>
         
                     <mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></mat-header-row>

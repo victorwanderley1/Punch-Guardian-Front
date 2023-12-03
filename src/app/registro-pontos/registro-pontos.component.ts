@@ -3,7 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { RegistroPontosApiService } from "../registro-pontos-api.service";
 import { RegistroPonto } from './registro-ponto.interface';
 import { EspelhoPonto } from './espelho-ponto/espelho-ponto.interface';
-import { MatDateFormats, MAT_DATE_FORMATS } from '@angular/material/core';
+import * as moment from 'moment';
+
 
 
 @Component({
@@ -15,8 +16,8 @@ import { MatDateFormats, MAT_DATE_FORMATS } from '@angular/material/core';
 })
 export class RegistroPontosComponent {
   range = new FormGroup({
-    dtInicio: new FormControl<Date | null>(null),
-    dtFim: new FormControl<Date | null>(null),
+    dtInicio: new FormControl<string | null>(null),
+    dtFim: new FormControl<string | null>(null),
   });
   pontos: RegistroPonto[] = [];
   pontoPrincipal: any = {};
@@ -31,18 +32,35 @@ export class RegistroPontosComponent {
   }
 
   buscarPontos(){
-    this.registroService.get().subscribe((data: RegistroPonto[])=>{
-      console.log(data);
-      this.pontoPrincipal = data[0]
-      this.pontos = data;
-    });
+      this.registroService.get().subscribe((data: RegistroPonto[]) => {
+        console.log(data);
+        this.pontoPrincipal = data[0]
+        this.pontos = data;
+      });
+  }
+
+  buscarPontosPeriodo(){
+    let novaData: moment.Moment = moment.utc(this.range.value.dtInicio).local();
+    this.range.value.dtInicio = novaData.format("YYYY-MM-DD");
+    novaData = moment.utc(this.range.value.dtFim).local();
+    this.range.value.dtFim = novaData.format("YYYY-MM-DD");
+
+    this.registroService.getEspelhoPontoPeriodo(1, this.range.value.dtInicio, this.range.value.dtFim)
+      .subscribe((retorno: EspelhoPonto) =>{
+        this.espelhoPonto = retorno;
+      })
   }
 
   buscaEspelhoPonto(){
-    this.registroService.getEspelhoPonto().subscribe((data: EspelhoPonto) =>{
-      console.log(data);
-      this.espelhoPonto = data;
-    })
+    if ((this.range.value.dtInicio != 'Invalid date' && this.range.value.dtFim != 'Invalid date')
+    && (this.range.value.dtInicio != null && this.range.value.dtFim != null)) {
+      this.buscarPontosPeriodo();
+    } else {
+      this.registroService.getEspelhoPonto().subscribe((data: EspelhoPonto) => {
+        this.espelhoPonto = data;
+      })
+    }
+    this.range.reset();
   }
 
   baterPonto(){
