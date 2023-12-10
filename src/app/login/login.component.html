@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="background-container">
+    <div class="content">
+        <div id="content-login">
+            <form id="form-login">
+                <h1 class="titulo-container">Login</h1>
+                <mat-form-field class="campo-login">
+                    <mat-icon matPrefix>person</mat-icon>
+                    <mat-label>Login</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field class="campo-login">
+                    <mat-icon matPrefix>lock</mat-icon>
+                    <mat-label>Senha</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div>
+                    <mat-checkbox>Manter-me conectado.</mat-checkbox>
+                </div>
+                <button mat-raised-button color="primary">
+                    <mat-icon matPrefix>input</mat-icon>
+                    Entrar
+                </button>
+                <a href="">Esqueci minha senha</a>
+            </form>
+        </div>
+    </div>
+</div>

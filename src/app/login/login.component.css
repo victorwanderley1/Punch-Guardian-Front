@@ -1,0 +1,39 @@
+#content-login{
+  align-self: center;
+  width: 450px;
+  height: 570px;
+  /* 
+  border-radius: 8px;
+  background: rgba(0,150,136,0.78);
+  background-blend-mode: normal; */
+}
+
+#form-login {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.campo-login{
+    width: 410px;
+    height: 80px;
+    border-radius: 16px;
+}
+
+.titulo-container{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    font-weight: bold;
+    font-size: xx-large;
+    color: #ffffff;
+    font-family: Inter;
+}
+
+a{
+    color: rgba(0, 150, 135, 0.986);
+    font-weight: 600;
+}
