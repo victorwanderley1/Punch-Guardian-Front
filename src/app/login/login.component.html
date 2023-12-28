@@ -1,17 +1,23 @@
 <div class="background-container">
     <div class="content">
+        <div class="alerta" *ngIf="mensagem != ''">
+            <mat-icon matPrefix color="warn">warning</mat-icon> <p class="texto-alerta">{{mensagem}}</p>
+        </div>
+        <!-- <div class="alerta">
+            <mat-icon matPrefix color="warn">warning</mat-icon> <p class="texto-alerta">Usuário ou senha incorreta</p>
+        </div> -->
         <div id="content-login">
-            <form id="form-login">
+            <form id="form-login" [formGroup]="dados">
                 <h1 class="titulo-container">Login</h1>
                 <mat-form-field class="campo-login">
                     <mat-icon matPrefix>person</mat-icon>
                     <mat-label>Login</mat-label>
-                    <input matInput>
+                    <input matInput formControlName="username">
                 </mat-form-field>
                 <mat-form-field class="campo-login">
                     <mat-icon matPrefix>lock</mat-icon>
                     <mat-label>Senha</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'">
+                    <input matInput formControlName="senha" [type]="hide ? 'password' : 'text'">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -20,7 +26,7 @@
                 <div>
                     <mat-checkbox>Manter-me conectado.</mat-checkbox>
                 </div>
-                <button mat-raised-button color="primary">
+                <button mat-raised-button color="primary" (click)="logar()">
                     <mat-icon matPrefix>input</mat-icon>
                     Entrar
                 </button>

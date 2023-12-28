@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { RegistroPontosComponent } from './registro-pontos/registro-pontos.component';
@@ -22,6 +22,8 @@ import {FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular
 import { FormatarTotalHorasTrabalhadasPipe } from './registro-pontos/espelho-ponto/total-horas-trabalhadas.pipe';
 import { LoginComponent } from './login/login.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { TokenInterceptorService } from './token-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -53,6 +55,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}, //Adicionado para utilizar o formato pt-BR nas datas
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

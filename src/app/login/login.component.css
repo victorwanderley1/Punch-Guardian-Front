@@ -33,7 +33,28 @@
     font-family: Inter;
 }
 
+.alerta{
+    background-color: rgba(252, 252, 252, 0.459);
+    display: flex;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border-radius: 16px;
+}
+
+.texto-alerta{
+    color: rgba(0, 0, 0, 0.986);
+    font-size: large;
+    font-weight: 500;
+    margin: 0;
+    
+}
+
 a{
-    color: rgba(0, 150, 135, 0.986);
+    color: rgba(255, 6, 6, 0.986);
     font-weight: 600;
 }
