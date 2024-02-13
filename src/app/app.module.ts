@@ -22,7 +22,9 @@ import {FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular
 import { FormatarTotalHorasTrabalhadasPipe } from './registro-pontos/espelho-ponto/total-horas-trabalhadas.pipe';
 import { LoginComponent } from './login/login.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { RetroativoComponent } from './registro-pontos/retroativo/retroativo.component';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
     AboutComponent,
     RegistroPontosComponent,
     FormatarTotalHorasTrabalhadasPipe,
-    LoginComponent
+    LoginComponent,
+    RetroativoComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}, //Adicionado para utilizar o formato pt-BR nas datas

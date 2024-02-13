@@ -1,9 +1,14 @@
 <mat-toolbar color="primary">  
+  <div class="logo-img">
+    <img src="assets/logo.png" alt="Logo" class="logo-img">
+  </div>
   <h1>  
   Punch Guardian 
   </h1>  
   <button mat-button routerLink="/">Home</button>
-  <button mat-button routerLink="/login">Logar</button>    
+  <button mat-button routerLink="/login" *ngIf="!isLoggedIn">Logar</button>    
+  <button mat-button routerLink="/registro-pontos" *ngIf="isLoggedIn">Registrar Ponto</button>
+  <button mat-button routerLink="/registro-pontos/retroativo" *ngIf="isLoggedIn">Registrar Ponto Retroativo</button>
   <button mat-button routerLink="/about">About</button>
   <button mat-icon-button aria-label="Realizar logout" *ngIf="isLoggedIn" (click)="logout()">
     <mat-icon>logout</mat-icon>

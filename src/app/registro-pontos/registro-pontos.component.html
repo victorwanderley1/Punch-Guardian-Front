@@ -51,25 +51,41 @@
         
                     <ng-container matColumnDef="entrada1">
                         <mat-header-cell *matHeaderCellDef> Entrada 1 </mat-header-cell>
-                        <mat-cell *matCellDef="let dia"> {{dia.pontos[0]?.hora}} </mat-cell>
+                        <mat-cell *matCellDef="let dia"> 
+                            <a mat-button [routerLink]="['/registro-pontos/retroativo/', dia.pontos[0]?.id]">
+                             {{dia.pontos[0]?.hora}}
+                            </a>
+                         </mat-cell>
                         <mat-footer-cell *matFooterCellDef></mat-footer-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="saida1">
                         <mat-header-cell *matHeaderCellDef> Saída 1 </mat-header-cell>
-                        <mat-cell *matCellDef="let dia"> {{dia.pontos[1]?.hora}} </mat-cell>
+                        <mat-cell *matCellDef="let dia"> 
+                            <a mat-button [routerLink]="['/registro-pontos/retroativo/', dia.pontos[1]?.id]">
+                            {{dia.pontos[1]?.hora}} 
+                            </a>
+                        </mat-cell>
                         <mat-footer-cell *matFooterCellDef></mat-footer-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="entrada2">
                         <mat-header-cell *matHeaderCellDef> Entrada 2 </mat-header-cell>
-                        <mat-cell *matCellDef="let dia"> {{dia.pontos[2]?.hora}} </mat-cell>
+                        <mat-cell *matCellDef="let dia"> 
+                            <a mat-button [routerLink]="['/registro-pontos/retroativo/', dia.pontos[2]?.id]">
+                            {{dia.pontos[2]?.hora}} 
+                            </a>
+                        </mat-cell>
                         <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
                     </ng-container>
         
                     <ng-container matColumnDef="saida2">
                         <mat-header-cell *matHeaderCellDef> Saída 2 </mat-header-cell>
-                        <mat-cell *matCellDef="let dia"> {{dia.pontos[3]?.hora}} </mat-cell>
+                        <mat-cell *matCellDef="let dia">
+                            <a mat-button [routerLink]="['/registro-pontos/retroativo/', dia.pontos[3]?.id]">    
+                            {{dia.pontos[3]?.hora}} 
+                            </a>
+                        </mat-cell>
                         <mat-footer-cell *matFooterCellDef> Total de Horas Trabalhadas </mat-footer-cell>
                     </ng-container>
         

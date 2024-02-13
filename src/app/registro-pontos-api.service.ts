@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { RegistroPonto } from './registro-pontos/registro-ponto.interface';
-import { EspelhoPonto } from './registro-pontos/espelho-ponto/espelho-ponto.interface';
+import { EspelhoPonto, Ponto } from './registro-pontos/espelho-ponto/espelho-ponto.interface';
 import { environment } from 'src/environments/environment';
+import { RegistroPontoRetroativo } from './registro-pontos/retroativo/registro-ponto-retroativo.interface';
 
 
 @Injectable({
@@ -35,7 +36,25 @@ export class RegistroPontosApiService {
     return retornoAPI;
   }
 
+  public buscarPonto(idProfissional: number, idPonto: number){
+    var retornoAPI = this.httpClient.get<RegistroPonto>(this.SERVER_URL+idProfissional+'/'+idPonto);
+    return retornoAPI;
+  }
+
   public baterPonto(){
     return this.httpClient.post(this.SERVER_URL+this.idProfissional, '');
+  }
+
+  public baterPontoRetroativo(idProfissional: number, tipoPonto: number, hora: any){
+    var body = {tipoPonto, hora};
+    
+    return this.httpClient.post(this.SERVER_URL+'retroativo/'+idProfissional, body);
+  }
+
+  public atualizarPonto(idProfissional: number, id: number, tipoPonto: number, hora: any){
+    const correcao = true;
+    var body = {id, tipoPonto, hora, correcao};
+    
+    return this.httpClient.put(this.SERVER_URL+idProfissional, body);
   }
 }
