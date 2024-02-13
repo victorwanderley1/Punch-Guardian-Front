@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { RegistroPontosComponent } from './registro-pontos/registro-pontos.component';
@@ -19,7 +19,13 @@ import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { FormatarTotalHorasTrabalhadasPipe } from './registro-pontos/espelho-ponto/total-horas-trabalhadas.pipe'
+import { FormatarTotalHorasTrabalhadasPipe } from './registro-pontos/espelho-ponto/total-horas-trabalhadas.pipe';
+import { LoginComponent } from './login/login.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { RetroativoComponent } from './registro-pontos/retroativo/retroativo.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +33,9 @@ import { FormatarTotalHorasTrabalhadasPipe } from './registro-pontos/espelho-pon
     HomeComponent,
     AboutComponent,
     RegistroPontosComponent,
-    FormatarTotalHorasTrabalhadasPipe
+    FormatarTotalHorasTrabalhadasPipe,
+    LoginComponent,
+    RetroativoComponent
   ],
   imports: [
     BrowserModule,
@@ -45,10 +53,17 @@ import { FormatarTotalHorasTrabalhadasPipe } from './registro-pontos/espelho-pon
     MatDatepickerModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}, //Adicionado para utilizar o formato pt-BR nas datas
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

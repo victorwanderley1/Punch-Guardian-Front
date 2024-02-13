@@ -25,4 +25,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     align-items: center;
     color: #fff; /* Cor do texto*/
   }
-  
+  .logo-img {
+    max-width: 100%;
+    max-height: 72px; /* Defina a altura máxima desejada */
+    height: auto;
+  }

@@ -1,0 +1,31 @@
+<div class="background-container">
+    <div class="content">
+        <h1>Registrar Ponto Retroativo</h1>
+        <form [formGroup]="formPonto">
+            <mat-form-field>
+                <mat-label>Tipo de Ponto:</mat-label>
+                <mat-select formControlName="tipoPonto">
+                    <mat-option>-none-</mat-option>
+                    <mat-option [value]="0">Entrada</mat-option>
+                    <mat-option [value]="1">Saída</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="espaco-a-esquerda">
+                <mat-label>Data:</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dataPonto">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="espaco-a-esquerda">
+                <mat-label>Horário:</mat-label>
+                <input matInput type="time" formControlName="horario">
+            </mat-form-field>
+        </form>
+        <div>
+            <p>{{mensagem}}</p>
+        </div>
+        <div class="botoes">
+            <button mat-raised-button color="accent" class="botao" (click)="baterPontoRetroativo()">Bater Ponto</button>
+        </div>
+    </div>
+</div>
